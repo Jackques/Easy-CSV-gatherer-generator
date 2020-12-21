@@ -45,6 +45,17 @@ function createCSV(anArray){
 		`[${element.categorie}] ${element.title},low,jackg,UX/UI,doorkliksessie-nieuwe-fr,"*Uitdaging:*${specialCharacters()}${element.description}${specialCharacters(2)}*Melder:*${specialCharacters()}${element.melder}${specialCharacters(2)}*Reproductie:*${specialCharacters()}${element.reproductie}${specialCharacters(2)}*Schermprinten:*${specialCharacters()}${displayScreenshots(element.screensinhtml)}"<br/>`;
 	});
 	return csvString;
+	
+	/*
+	NOTE:
+	- Due to known bug in Jira CSV, it took me a while to try out that i should NOT check Map field value on the 'description field' (on the .csv mapping page right after importing & selecting a project in Jira. ). This f*cked up my markup inside the descriptiontext (the.. JIRA SPECIFIC (bold text asterixs, the double qoutes to indicate a long string/text, etc.)).
+	I tried using backslashes first many times, but that had JS problems of it's own...
+	https://community.atlassian.com/t5/Jira-questions/Jira-import-issues-via-CSV-Embedded-newlines-in-text-fields-are/qaq-p/905477
+	- I also tried but could not import an attachment either (apparantly admin's can?)
+	https://community.atlassian.com/t5/Jira-questions/import-attachments-from-csv-file/qaq-p/245071
+	https://community.atlassian.com/t5/Jira-questions/How-to-import-attachments-using-the-CSV-importer/qaq-p/327051
+	https://confluence.atlassian.com/adminjiraserver072/importing-data-from-csv-829827152.html#ImportingdatafromCSV-howRunningtheCSVfileimportwizard
+	*/
 }
 function specialCharacters(amount){
 	if(amount === 2){
